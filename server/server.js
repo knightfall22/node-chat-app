@@ -1,6 +1,7 @@
 const PATH = require('path'),
 PUBLICPATH = PATH.join(__dirname, '../public'),
-   EXPRESS = require('express');
+   EXPRESS = require('express'),
+      PORT = process.env.PORT;
 
 
 let app = EXPRESS();
@@ -11,7 +12,7 @@ app.get('/',(req,res) => {
     res.redirect(PUBLICPATH + '/index.html');
 });
 
-app.listen(3000,() => {
+app.listen(PORT,() => {
     console.log('App started on port 3000');
     
 })
