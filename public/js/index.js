@@ -8,6 +8,13 @@
           console.log('New message',message);  
       });
 
+      socket.on('Welcome',function (greeting) {
+          console.log(greeting);
+      })
+
+     socket.on('newUser',function (message) {
+          console.log(message);
+      })
  });
 
 
