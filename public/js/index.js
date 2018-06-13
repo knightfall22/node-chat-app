@@ -8,10 +8,6 @@
           console.log('New message',message);  
       });
 
-      socket.emit('createMessage',{
-          from:'Haise',
-          text:'i am not kaneki anymore'
-      })
  });
 
 
