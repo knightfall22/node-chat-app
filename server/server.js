@@ -19,10 +19,10 @@ io.on('connection',(socket) => {
     socket.emit('Welcome',generateMessage('admin','Welcome to the App'));
     socket.broadcast.emit('newUser',generateMessage('admin', 'new user has joined'))
 
-    socket.on('createMessage',(message) => {
+    socket.on('createMessage',(message,callback) => {
         console.log('create message',message);
         io.emit('newMessage',generateMessage(message.from,message.text));
-
+        callback('this is from the sever');
         // socket.broadcast.emit('newMessage',{
         //      from: message.from,
         //      text:message.text,
