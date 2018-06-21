@@ -11,12 +11,8 @@
           document.getElementById('messages').appendChild(li)
       });
 
-      socket.on('Welcome',function (greeting) {
-          console.log(greeting);
-      })
-
-     socket.on('newUser',function (message) {
-          console.log(message);
+      socket.on('disconnect',function() {
+          console.log("disconnected from server");
       })
 
 

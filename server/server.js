@@ -16,8 +16,8 @@ app.use(EXPRESS.static(PUBLICPATH));
 io.on('connection',(socket) => {
     console.log('New user Connected');
 
-    socket.emit('Welcome',generateMessage('admin','Welcome to the App'));
-    socket.broadcast.emit('newUser',generateMessage('admin', 'new user has joined'))
+    socket.emit('newMessage',generateMessage('admin','Welcome to the App'));
+    socket.broadcast.emit('newMessage',generateMessage('admin', 'new user has joined'))
 
     socket.on('createMessage',(message,callback) => {
         console.log('create message',message);
