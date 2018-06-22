@@ -4,7 +4,7 @@ PUBLICPATH = PATH.join(__dirname, '../public'),
    EXPRESS = require('express'),
       PORT = process.env.PORT || 3000,
   SOCKETIO = require('socket.io'),
-{generateMessage} = require('./utils/message');
+{ generateMessage, generateLocationMessage} = require('./utils/message');
 
 
 let app = EXPRESS(),
@@ -23,12 +23,10 @@ io.on('connection',(socket) => {
         console.log('create message',message);
         io.emit('newMessage',generateMessage(message.from,message.text));
         callback('this is from the sever');
-        // socket.broadcast.emit('newMessage',{
-        //      from: message.from,
-        //      text:message.text,
-        //      completedAt:new Date().getTime()
-        // })
     });
+    socket.on('createLocationMessage',(coords) => {
+        io.emit('newLocationMessage',generateLocationMessage('Admin',coords.latitude, coords.longitude))   
+    })
 
     socket.on('disconnect',() => {
         console.log('Client has disconnected');
