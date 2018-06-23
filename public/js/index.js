@@ -31,12 +31,12 @@
 
 document.getElementById('message-form').addEventListener('submit',(e) => {
     e.preventDefault();
-
+    let messageTextBox = document.getElementById('message');
     socket.emit('createMessage',{
         from:'User',
-        text: document.getElementById('message').value
+        text:messageTextBox.value
     },function () {
-        
+        messageTextBox.value = '';
     })
 })
 
@@ -47,15 +47,20 @@ locationButton.addEventListener('click',() => {
     if (!navigator.geolocation) {
         return alert('Geolocation not supported by your browser');
     }
+     
+    locationButton.setAttribute('disabled',true)
+    locationButton.textContent = "Sending Location ....."
 
     navigator.geolocation.getCurrentPosition(function (position) {
-    
+         locationButton.removeAttribute('disabled')
+         locationButton.textContent = "Send location"
         socket.emit('createLocationMessage',{
             latitude:position.coords.latitude,
             longitude:position.coords.longitude
         })
 
     },function () {
+        locationButton.removeAttribute('disabled')
         alert('Unable to fetch location')
     })
 })
