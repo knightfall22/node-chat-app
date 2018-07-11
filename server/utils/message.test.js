@@ -7,7 +7,7 @@ describe('generateMessage',() => {
                 from = 'pelumi',
                 text = "Hello From New Genesis";
          expect(message).toMatchObject({from,text})
-         expect( typeof message.completedAt).toBe('number');
+         expect( typeof message.createdAt).toBe('number');
     });
 });
 
@@ -19,6 +19,6 @@ describe('generateLocationMessage',() => {
          url = `https://www.google.com/maps?q=${lat},${lng}`;
         let message = generateLocationMessage(from,lat,lng);
         expect(message).toMatchObject({from,url});
-        expect(typeof message.completedAt).toBe('number');
+        expect(typeof message.createdAt).toBe('number');
     })
 })

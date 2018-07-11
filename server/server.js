@@ -16,11 +16,10 @@ app.use(EXPRESS.static(PUBLICPATH));
 io.on('connection',(socket) => {
     console.log('New user Connected');
 
-    socket.emit('newMessage',generateMessage('admin','Welcome to the App'));
-    socket.broadcast.emit('newMessage',generateMessage('admin', 'new user has joined'))
+    socket.emit('newMessage',generateMessage('Admin','Welcome to the App'));
+    socket.broadcast.emit('newMessage',generateMessage('Admin', 'new user has joined'))
 
     socket.on('createMessage',(message,callback) => {
-        console.log('create message',message);
         io.emit('newMessage',generateMessage(message.from,message.text));
         callback('this is from the sever');
     });
@@ -36,6 +35,7 @@ io.on('connection',(socket) => {
 
 server.listen(PORT,() => {
     console.log(`App started on port ${PORT}`);
+    console.log(`Go to http://localhost:${PORT}/`);
     
 })
 
